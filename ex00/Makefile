@@ -6,7 +6,7 @@
 #    By: tatahere <tatahere@student.42barcelon      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/01/31 09:52:48 by tatahere          #+#    #+#              #
-#    Updated: 2025/02/07 15:00:15 by tatahere         ###   ########.fr        #
+#    Updated: 2025/02/08 14:32:22 by tatahere         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,17 +14,19 @@ ROOT_DIR	=	./
 
 BIN_DIR		=	$(ROOT_DIR)bin/
 SRC_DIR		=	$(ROOT_DIR)src/
+INC_DIR		=	$(ROOT_DIR)inc/
 
-RF		=	rm -rf
-C++		=	c++
+RM		=	rm -rf
+CXX		=	c++
 
-CFLAGS	:=	-Wall -Wextra -Werror -std=c++98
+CXXFLAGS	:=	-Wall -Wextra -Werror -std=c++98 -MMD
 
-CINC	=	-I./ -I./inc/
-CFLAGS	+=	$(CINC)
+CINC		:=	-I$(BIN_DIR)
+CINC		+=	-I$(INC_DIR)
+CXXFLAGS	+=	$(CINC)
 
-CDEBUG	=	-g -fsanitize=address
-CFLAGS	+=	$(CDEBUG)
+CDEBUG		:=	-g
+CXXFLAGS	+=	$(CDEBUG)
 
 NAME	=	test
 
@@ -33,7 +35,9 @@ OBJ		:=	main.o			\
 			newZombie.o		\
 			randomChump.o	\
 
-OBJ		:= $(addprefix $(BIN_DIR), $(OBJ))
+OBJ		:=	$(addprefix $(BIN_DIR), $(OBJ))
+
+DEP		:=	$(OBJ :.o=.d)
 
 VPATH	= $(ROOT_DIR)
 VPATH	+= $(SRC_DIR)
@@ -44,17 +48,19 @@ $(BIN_DIR)		:
 	mkdir $(BIN_DIR)
 
 $(NAME) : $(OBJ) Makefile
-	$(C++) $(CFLAGS) $(OBJ) -o $(NAME)
+	$(CXX) $(CXXFLAGS) $(OBJ) -o $(NAME)
 
-$(BIN_DIR)%.o : %.cpp	Makefile $(HDR)
-	$(C++) $(CFLAGS) -c $< -o $@
+$(BIN_DIR)%.o : %.cpp	Makefile 
+	$(CXX) $(CXXFLAGS) -c $< -o $@
 
 clean :
-	$(RF) $(BIN_DIR)
+	$(RM) $(BIN_DIR)
 
 fclean : clean
-	$(RF) $(NAME)
+	$(RM) $(NAME)
 
 re : fclean all
+
+-include $(DEP)
 
 .PHONY:	all clean fclean re
