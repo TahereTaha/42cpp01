@@ -6,7 +6,7 @@
 #    By: tatahere <tatahere@student.42barcelon      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/01/31 09:52:48 by tatahere          #+#    #+#              #
-#    Updated: 2025/02/08 16:55:25 by tatahere         ###   ########.fr        #
+#    Updated: 2025/02/08 16:54:57 by tatahere         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,7 +17,7 @@ SRC_DIR		=	$(ROOT_DIR)src/
 INC_DIR		=	$(ROOT_DIR)inc/
 
 RM		=	rm -rf
-CXX		=	c++
+CXX		=	g++
 
 CXXFLAGS	:=	-Wall -Wextra -Werror -std=c++98 -MMD
 
@@ -25,14 +25,15 @@ CINC		:=	-I$(BIN_DIR)
 CINC		+=	-I$(INC_DIR)
 CXXFLAGS	+=	$(CINC)
 
-CDEBUG		:=	-g
+CDEBUG		:=	-g -fsanitize=address
 CXXFLAGS	+=	$(CDEBUG)
 
 NAME	=	test
 
 OBJ		:=	main.o			\
-			Zombie.o		\
-			zombieHorde.o	\
+			Weapon.o		\
+			HumanA.o		\
+			HumanB.o		\
 
 OBJ		:=	$(addprefix $(BIN_DIR), $(OBJ))
 
