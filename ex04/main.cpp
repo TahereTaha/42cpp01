@@ -6,7 +6,7 @@
 /*   By: tatahere <tatahere@student.42barcelon      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/08 17:14:55 by tatahere          #+#    #+#             */
-/*   Updated: 2025/02/09 12:52:52 by tatahere         ###   ########.fr       */
+/*   Updated: 2025/02/09 17:37:42 by tatahere         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +79,7 @@ int	main(int argc, char **argv)
 	//	check arrument are correct.
 	if (argc != 4 || argv[2][0] == '\0')
 	{
-		std::cout << "the number of parameters is incorect.\n";
+		std::cout << "the parameters is incorect.\n";
 		std::cout << "please put a command like:\n";
 		std::cout << "./sed <filename> <str1> <str2>\n";
 		std::cout << "and make sure that the <str1> in not empty" << std::endl;
