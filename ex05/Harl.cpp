@@ -6,7 +6,7 @@
 /*   By: tatahere <tatahere@student.42barcelon      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/09 13:47:27 by tatahere          #+#    #+#             */
-/*   Updated: 2025/02/09 16:24:25 by tatahere         ###   ########.fr       */
+/*   Updated: 2025/02/09 17:06:54 by tatahere         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,10 @@ void	Harl::complain(std::string level)
 		std::cout << "there is no level named like that." << std::endl;
 		return ;
 	}
-	//std::cout << "something" << std::endl;
+	//	I think I understand what a 'pending member-function invocation' is
+	//	or at least pretend to.
+	//	thanks to mbozzi (3937) on https://cplusplus.com/forum/beginner/239227/
+	//	without you I coudn't be able to do it
 	(this->*complain_action[num_level])();
 }
 
